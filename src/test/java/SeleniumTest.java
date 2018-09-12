@@ -17,7 +17,7 @@ public class SeleniumTest {
 
     @Before
     public void setup() {
-        //driver = new ChromeDriver();
+       // driver = new ChromeDriver();
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("http://www.google.com");
@@ -32,12 +32,10 @@ public class SeleniumTest {
     public void testEnter ()
     {
         String expected = "French language - Wikipedia";
-
         WebElement barreRecherche = driver.findElement(By.id("lst-ib"));
         barreRecherche.sendKeys("french");
         barreRecherche.sendKeys(Keys.ENTER);
-
-        WebElement firstResult = driver.findElement(By.xpath("//*[@id=\"rso\"]/div[2]/div/div/div/div/h3/a"));
+        WebElement firstResult = driver.findElement(By.cssSelector(".rc > .r > a"));
         Assert.assertEquals(expected, firstResult.getText());
     }
 
@@ -49,7 +47,7 @@ public class SeleniumTest {
         barreRecherche.sendKeys("french");
         WebElement buttonRecherche = driver.findElement(By.className("lsb"));
         buttonRecherche.click();
-        WebElement firstResult = driver.findElement(By.xpath("//*[@id=\"rso\"]/div[2]/div/div/div/div/h3/a"));
+        WebElement firstResult = driver.findElement(By.cssSelector(".rc > .r > a"));
         Assert.assertEquals(expected, firstResult.getText());
    }
 
